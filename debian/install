@@ -1,0 +1,2 @@
+apt-spy /usr/bin/
+apt-spy.conf /etc/

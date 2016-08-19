@@ -1,0 +1,3 @@
+# copyright is a BSD-a-like that is fully quoted in debian/copyright
+# The GPL referred to is the OLD version (1.x and 2.x)
+apt-spy: copyright-should-refer-to-common-license-file-for-gpl

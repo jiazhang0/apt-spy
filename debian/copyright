@@ -1,0 +1,71 @@
+Format-Specification: http://anonscm.debian.org/gitweb/?p=dbnpolicy/policy.git;a=blob;f=copyright-format/copyight-format.xml;hb=b4d036bab75ac794c3500563768d60ad994ae4f1
+Upstream-Name: apt-spy
+Upstream-Contact: sc@linux.it
+Source: almost a native debian package (no upstream source since 2003)
+
+Files: *
+Copyright: 2003 Steven Holmes
+Comment:
+ This package was debianized by Stephen Stafford <bagpuss@debian.org>
+ on Tuesday, 20 May 2003
+ .
+ Upstream Author: Steven Holmes <steg@bsdeviant.net>
+ .
+ It was downloaded from: http://aptspy.ipv6peer.net/apt-spy-3.0.tar.gz
+ .
+ This software is copyright (c) 2003 Steven Holmes
+ .
+ This is version 3 of apt-spy.  Versions 1.x and 2.x were written by Danny
+ Rodriguez <messiah@optonline.net>
+ .
+ Versions 1.x and 2.x were licensed under the GNU GPL v2 or any later
+ version (see /usr/share/common-licenses/GPL-2 or
+ /usr/share/common-licenses/GPL-3).
+ .
+ This version 3 is a total rewrite from scratch, and is licensed under the
+ following (BSD style) license:
+License: BSD-3-clause
+ Copyright (c) 2003, Steven Holmes
+ All rights reserved.
+ .
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ .
+    1. Redistributions of source code must retain the above copyright notice,
+       this list of conditions and the following disclaimer in this position
+       and unchanged.
+ .
+    2. Redistributions in binary form must reproduce the above copyright
+       notice, this list of conditions and the following disclaimer in the
+       documentation and/or other materials provided with the distribution.
+ .
+    3. The name of the author may not be used to endorse or promote products
+       derived from this software without specific prior written permission
+ .
+    THIS SOFTWARE IS PROVIDED BY THE AUTHOR `AS IS'' AND ANY EXPRESS OR
+    IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+    OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+    IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
+    INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+    NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+    DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+    THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+    (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+    THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+Files: include/parse.h
+Copyright:
+ 2003 Steven Holmes
+ 2008 Stefano Canepa
+License: BSD-3-clause
+ (as above)
+
+Files: include/trim.h trim.c
+Copyright: 
+ 2009 Stefano Canepa
+License: BSD-3-clause
+
+Files: debian/postinst
+Copyright: 2008 Stefano Canepa
+License: BSD-3-clause

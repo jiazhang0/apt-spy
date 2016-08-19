@@ -1,0 +1,19 @@
+This version of apt-spy is by Steven Holmes <steg@bsdeviant.org>. The
+original was by Danny Rodriguez <messiah@optonline.net>. This is a complete 
+re-write of the original.
+
+To update the mirror list, simply run:
+$ apt-spy update
+
+The program will write a new /etc/apt/sources.list.d/apt-spy.list
+Your old /etc/apt/sources.list.d/apt-spy.list will be saved to 
+/etc/apt/sources.list.d/apt-spy.list.bak
+
+Starting from version 3.1 apt-spy changed the directory where it saves the 
+mirror list file from /var/lib/apt-spy/ to /var/cache/apt/. 
+If the old directory contained only mirror.txt it is cleaned and removed by the
+post installation script during upgrade if /var/lib/apt-spy contained file 
+other the mirror.txt only it is removed and the user needs to remove files and
+directory by his own.
+
+ -- Stefano Canepa <sc@linux.it>, Sun, 22 Jan 2012 22:47:20 +0100

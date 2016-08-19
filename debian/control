@@ -1,0 +1,17 @@
+Source: apt-spy
+Section: admin
+Priority: optional
+Maintainer: Stefano Canepa <sc@linux.it>
+Build-Depends: debhelper (>= 5.0), libcurl4-openssl-dev | libcurl3-openssl-dev, po-debconf
+Standards-Version: 3.9.2
+Vcs-Git: git://git.debian.org/git/collab-maint/apt-spy.git
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=collab-maint/apt-spy.git
+
+Package: apt-spy
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: writes a sources.list file based on bandwidth tests
+ Parses the list of mirrors downloaded from ftp.debian.org and then based on
+ the region specified by the user each of testes mirrors for bandwidth, at the
+ end it writes /etc/apt/sources.list.d/apt-spy.list using the best mirror it
+ found out.

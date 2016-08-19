@@ -1,0 +1,515 @@
+apt-spy (3.2.2-1) unstable; urgency=low
+
+  * New upstream release
+   - Fixes segfault with option -m and special args (Closes: #645839)
+   - Fixes another segfault (Closes: #447232)
+   - Fixes segfault with with -v or -h options (Closes: #491802)
+   - Fixes the region filter (Closes: #617699)
+   - Fixes paths in the man page (Closes: #548591, #551344)
+   - Doesn't get confused by leading blanks (Closes: #457049)
+   - Inlines initialization of defaults (Closes: #317592)
+   - Tests all of the IP addresses for a mirror (Closes: #320112)
+  * Applied patch to copyright and other files (Closes: #645910)
+  * Moved mirrors.txt from /var/cache/apt-spy to /var/cache/apt
+  * Updated to latest policy, ???no changes needed?????
+  * Switch to dpkg-source 3.0 (quilt) format
+
+ -- Stefano Canepa <sc@linux.it>  Sat, 14 Jan 2012 00:02:21 +0100
+
+apt-spy (3.1-19) unstable; urgency=low
+  
+  * Package adopted (Closes: #405297)
+  * Merged all patches from debian/patches. Quilt build-dependency dropped.
+  * Moved mirror.txt from /var/lib/apt-spy/ to /var/cache/apt-spy 
+    (Closes: #317587)
+  * Included command line used to generate source.list (Closes: #432592)
+  * Added -y option to choose sections other than main (Closes: #464555)
+  * Upload sponsored by Emanuele Rocca <ema@debian.org>
+  
+ -- Stefano Canepa <sc@linux.it>  Sat, 12 Jul 2008 16:03:37 +0200
+
+apt-spy (3.1-18) unstable; urgency=low
+
+  * QA upload.
+  * Depend on libcurl4-openssl-dev instead of libcurl3-openssl-dev
+     Closes: #452000
+  * Bumped Standards-Version: 3.7.3, no change needed
+  * Removed usr/share/lintian/overrides/ from debian/dirs (unused)
+
+ -- Raphael Geissert <atomo64@gmail.com>  Tue, 18 Dec 2007 17:55:18 -0600
+
+apt-spy (3.1-17) unstable; urgency=low
+
+  * QA upload.
+  * Updated default mirrors list (new 02_mirrors-txt_update.diff)
+  * Removed debian/TODO.Debian since there's nothing left to do
+  * argument-parsing-error-checks.diff: improved error checking on passed arguments (Closes: #317590)
+    - Thanks to Justin Pryzby
+  * segfault_418548.diff: invalid pointer causes a segfault (Closes: #418548)
+    - Thanks to Steve Kemp for the patch
+  * sources.list-rename.diff: default output list to /etc/apt/sources.list.d/apt-spy.list avoiding overwrite of /etc/apt/sources.list (Closes: #442165)
+  * Updated debian/menu to reflect new Debian Menu Sub-Policy
+
+ -- Raphael Geissert <atomo64@gmail.com>  Sat, 20 Oct 2007 21:05:46 -0500
+
+apt-spy (3.1-16) unstable; urgency=low
+
+  * QA upload.
+  * 03_writetop_segfault.diff: Fix annoying segfault when the -w option
+    is used (closes: #394376).
+  * 04_http_missing.diff: Make parser not to fail when HTTP field 
+    is missing (closes: #389838).
+  * 02_mirrors-txt_update.diff: Update README.mirrors.txt.
+
+ -- Robert Luberda <robert@debian.org>  Tue, 27 Feb 2007 23:30:46 +0100
+
+apt-spy (3.1-15) unstable; urgency=low
+
+  * QA upload.
+  * Orphaning package: thanks Stephen Stafford for your work.
+     - change debian/control accordingly.
+     - ACK previous NMU.
+  * Fix typo in apt-spy.8 manual page: (Closes: #401985)
+     - new 01_typo_fix_apt-spy8.diff patch.
+     - Build-Depend on quilt and include quilt's makefile in rules.
+  * Use dh_installman and dh_install instead of copying.
+  * Get rid of lintian override.
+  * Change cosmetics in rules' update target.
+  * Update mirrors.txt file as 02_mirrors-txt_update.diff.
+  * Add a TODO.Debian file.
+
+ -- Mohammed Adnène Trojette <adn+deb@diwi.org>  Tue,  2 Jan 2007 19:21:19 +0100
+
+apt-spy (3.1-14.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Mirrors now use ls-LR.gz. Modify main.c accordingly. (Closes: #356654)
+  * Bump Standards-Version to 3.7.2 and et debhelper compatibility to 5:
+     + remove debian/conffiles.
+     + add binary-indep target to rules.
+     + add debian/compat.
+
+ -- Mohammed Adnène Trojette <adn+deb@diwi.org>  Thu, 28 Sep 2006 03:44:36 +0200
+
+apt-spy (3.1-14) unstable; urgency=low
+
+  [ ssta ]
+  * Change build-depends on libcurl3-dev to libcurl3-openssl-dev
+  * Apply some patches from Justin Pryzby (Thanks Justin, apologies it's
+    taken me so long!)
+    - Patch to fix the mirror file screwup which caused apy-spy to segfault
+      every time. It removes some arbitrary limits. (Closes: #315120 #317591)
+    - Change the malloc of country_file so it's not mallocing its own length
+      (Closes: #317585)
+    - Apply patch which uses sprintf instead of strncat in file.c
+      (Closes: #317589)
+    - Apply patch to fix small memory leak (Closes: #317593)
+    - s/LICENSE/COPYRIGHT/ in *.c  (Closes: #317588)
+    - add a break statement to write_top() (Closes: #317586)
+
+  [ Stephen Stafford ]
+  * 
+
+ -- Stephen Stafford <bagpuss@debian.org>  Sun, 16 Oct 2005 12:42:22 +0000
+
+apt-spy (3.1-13) unstable; urgency=low
+
+  * Transition to libcurl3 (Closes: #279472)
+  * fix manpage (Closes: #281897)
+
+ -- Stephen Stafford <bagpuss@debian.org>  Thu,  9 Dec 2004 12:45:08 +0000
+
+apt-spy (3.1-12) unstable; urgency=low
+
+  * file.c: remove assumption of signedness of char when comparing to EOF.
+    This had the effect of causing the thing to hang on powerpc.  Remove the
+    cast altogether as getc() returns an int anyway.  (Closes: #282121)
+  * Update README.mirrors.txt to October 26th version.
+
+ -- Stephen Stafford <bagpuss@debian.org>  Mon, 22 Nov 2004 10:39:00 +0000
+
+apt-spy (3.1-11) unstable; urgency=low
+
+  * move README.mirrors.txt to /var/lib/apt-spy.  I still am unconvinced,
+    but I appear to be in the minority.  (Closes: #277816)
+  * rename README.mirrors.txt to mirrors.txt to make it look less like a
+    documentation file.  (Closes: #278201)
+  * update README.mirrors.txt to Oct13 version.
+
+ -- Stephen Stafford <bagpuss@debian.org>  Tue, 26 Oct 2004 16:56:49 +0100
+
+apt-spy (3.1-10) unstable; urgency=medium
+
+  * Backing out the previous NMU of Martin's.
+    apt-spy does not "dynamically update".  It updates *if and ONLY if*
+    you ask it to.  I do not see this as a violation of the spirit of 
+    the FHS.  I'm more than happy to have discussion about this.  PLEASE
+    this time, let's have the discussion *BEFORE* the NMU!
+
+ -- Stephen Stafford <bagpuss@debian.org>  Mon, 25 Oct 2004 08:31:09 +0100
+
+apt-spy (3.1-9.1) unstable; urgency=medium
+ 
+  * Non-maintainer upload.
+  * Moved the list of mirrors from /usr/share/apt-spy to /var/lib/apt-spy
+    because it is dynamically updated and thus in violation of the FHS and
+    hence the policy (closes: Bug#277816).
+
+ -- martin f. krafft <madduck@debian.org>  Fri, 22 Oct 2004 17:57:25 +0200
+
+apt-spy (3.1-9) unstable; urgency=low
+
+  * Move Mexico from South America to North America.  (Closes: #273381)
+
+ -- Stephen Stafford <bagpuss@debian.org>  Sun, 26 Sep 2004 08:01:27 +0000
+
+apt-spy (3.1-8) unstable; urgency=low
+
+  * Add output to state that something has been written (Closes: #257535)
+  * update README.mirrors.txt
+
+ -- Stephen Stafford <bagpuss@debian.org>  Sun, 11 Jul 2004 11:45:09 +0100
+
+apt-spy (3.1-7) unstable; urgency=low
+
+  * ARGH.  Not content with breaking shit once by changing the soname, he
+    changes it back and breaks shit a second time.  Okay, it was all he
+    could do I suppose.  Again, rebuild without changing anything at all to
+    account for the soname change in libcurl.  (Closes: #252998)
+  * Quote strings in debian/menu.  I may remove this in the future anyway.
+    It makes no real sense to run apt-spy from a menu anyway since it
+    *needs* command line options.  If anyone objects to this let me know,
+    othrewise I'll remove it in a future version.
+  * Bump standards version to 3.6.1
+
+ -- Stephen Stafford <bagpuss@debian.org>  Sun,  6 Jun 2004 15:16:09 +0100
+
+apt-spy (3.1-6) unstable; urgency=low
+
+  * Rebuild for libcurl soname change.
+  * Version -4 doesn't display the problem in #251887, not does this (-6)
+    version.  There is nothing in the diff between -4 and -5 that would
+    cause it.  I've not touched the source *at* *all* between -5 and -6.  I
+    am therefore assuming that it was a fuckup in some library somewhere.
+    I'm closing the bug, if the symptoms reappear, feel free to reopen it.
+    (Closes: #251887)
+
+ -- Stephen Stafford <bagpuss@debian.org>  Thu,  3 Jun 2004 20:14:24 +0000
+
+apt-spy (3.1-5) unstable; urgency=low
+
+  * parse area option case insensitively (Closes: #245794)
+
+ -- Stephen Stafford <bagpuss@debian.org>  Mon, 24 May 2004 15:11:32 +0000
+
+apt-spy (3.1-4) unstable; urgency=low
+
+  * Because apt-spy uses curl timeouts to only download a portion of the
+    file, the fact that ftp3.nrc.ca was silently dropping the connection on
+    the floor meant that curl was giving a timeout, just like it would it it
+    had downloaded part of the file.  Turns out that the values returned by
+    curl_easy_getinfo() are undefined unless the connect actually happens
+    and some data is transferred.  Steven Holmes prepared a patch which
+    checks that some data actually has been transferred before using the
+    values returned by curl_easy_getinfo().  This fixes the case where a
+    server dropping the connection rather than rejecting it results in
+    apt-spy reporting a infinite speed of transfer.  (Closes: #242840)
+  * Updated README.mirrors.txt
+
+ -- Stephen Stafford <bagpuss@debian.org>  Tue, 13 Apr 2004 23:56:39 +0000
+
+apt-spy (3.1-3) unstable; urgency=low
+
+  * fixed off-by-one error in main.c.  Many thanks to Steven Holmes for
+    finding and fixing this so quickly.  (Closes: 230044)
+
+ -- Stephen Stafford <bagpuss@debian.org>  Thu, 29 Jan 2004 00:37:18 +0000
+
+apt-spy (3.1-2) unstable; urgency=low
+
+  * Steven Holmes provided -w option which allows the user to specify the
+    number of top servers to output to a file.  (Closes: #211918)
+
+ -- Stephen Stafford <bagpuss@debian.org>  Mon, 12 Jan 2004 16:32:46 +0000
+
+apt-spy (3.1-1) unstable; urgency=low
+
+  * New upstream version fixing some bugs and adding a feature 
+  * Fixes -o screwing up.  The patch for this came from Brian Warner
+    <warner@lothar.com>.  I've also ensured that the orig.tar.gz does NOT
+    include a copy of the executable.  The blame for this was mine since it
+    was I (and not Steven Holmes) who ended up packing up the orig.tar.gz
+    for v3.0.  Sorry about that.  (Closes: #221965)
+  * Implements the ability (via the -s option) to specify a list of
+    countries to benchmark rather than using whole continents.  The
+    countries are specified using the ISO3166 two letter country code.  This
+    is the same as the internet TLD in all but a very few corneer cases (the
+    most notable corner case is the United kingdom, where .uk is the TLD,
+    but GB is the ISO3166.  This has been special-cased and apt-spy should
+    recognise both as valid).  Be aware that these ARE case sensitive, and
+    should be entered in UPPER CASE. (Closes: #201594)
+  * The manpage was updated to make it clearer that the -d option MUST be
+    used unless you are updating the mirror list.  Hopefully this makes it
+    less surprising for users.  (Closes: 223263)
+  * Included the most up to date (currently) README.mirrors.txt, dated Oct 9
+    2003.
+
+ -- Stephen Stafford <bagpuss@debian.org>  Thu, 18 Dec 2003 15:59:50 +0000
+
+apt-spy (3.0-5) unstable; urgency=low
+
+  * backed out the wgetting since not all buildds are promised to be
+    connected to the internet.
+  * We now check to make sure we aren't backing up a zero byte file.
+    (Closes: #196330) Whilst I agree that appending (or more properly adding
+    to the top of the file) the new sources is more robust, it's something
+    that will NOT be added to 3.0.  I've just filed a wishlist bug against
+    apt-spy for this feature, and it will probably be implemented in 3.1.
+
+ -- Stephen Stafford <ssta@pol.ac.uk>  Wed, 18 Jun 2003 14:36:18 +0000
+
+apt-spy (3.0-4) unstable; urgency=low
+
+  * Added build depends on wget -- Applied self-LART for not doing it before!
+    (Closes: 197787)
+
+ -- Stephen Stafford <ssta@pol.ac.uk>  Tue, 17 Jun 2003 16:40:19 +0000
+
+apt-spy (3.0-3) unstable; urgency=low
+
+  * Applied patch from Steven Holmes to fix writing of sources.list
+    (Closes: #196330) -- NB: This patch hasn't had half the testing I would
+    have liked...please test it to extinction :)
+  * Modified manpage to use "-d distribution" rather than "-d dist" for the
+    benefit of the hard of understanding :) (actually I CAN see how
+    confusion could arise, especially since English may not be your
+    preferred language, or if you were trying to very quickly read the
+    manpage and just read the synopsis) (Closes: #194582)
+  * Modified debian/rules so a clean (and current) mirror list is downloaded
+    every build.
+
+ -- Stephen Stafford <ssta@pol.ac.uk>  Tue, 17 Jun 2003 08:23:41 +0000
+
+apt-spy (3.0-2) unstable; urgency=low
+
+  * minor buggette.  If dist == stable the the security line is commented
+    out, and if dist != stable the security line is uncommented.  This is
+    the wrong way around.  changed line 252 of parse.c to be: 
+    if (strcmp(dist, "stable") == 0)
+
+ -- Stephen Stafford <bagpuss@debian.org>  Thu, 22 May 2003 00:45:53 +0100
+
+apt-spy (3.0-1) unstable; urgency=low
+
+  * All new source!  Total rewrite, so all new bugs to find! :)
+  * New features in this version include:
+    - Ability to only benchmark mirrors from a given geographical region
+      (Pertains: #119918)
+      This means (in part) that if you want to, you can define your very *own*
+      "Primary mirror list" easily and quickly :) (Closes: #134538)
+    - The -d <dist> option is now *required* before apt-spy will overwrite
+      sources.list.  It proved entirely too difficult to parse the
+      distribution to use from the existing list (many people have multiple
+      distributions in there, and it's not easy to decide which to use), but
+      it will now NOT overwrite your sources.list with the WRONG
+      distribution (unless you are silly and tell it the wrong one :)
+      (Closes: #119918)
+    - This version no longer outputs an outdated version string.
+      (Closes: #153755)
+    - We no longer add outdated external repostories to sources.list
+      (Closes: #193166)
+    - setting -e 1 now will do the Right Thing (Closes: #165629)
+    - No longer limited to a 10Mbit max throughput (Closes: #154546)
+    - Totally different sourcetree shouldn't segfault (or at least, not in
+      the same places :)  (Closes: #150205 #139220)
+    - Should now deal with an edited mirrors.list (although defining your
+      own "area" is more robust).  (Closes: #144311)
+    - There are far more informative error messages if we have problems with
+      retrieving either the mirror list during an update, or whilst
+      benchmarking any of the servers.  There may be *similar* bugs to this
+      one in 3.0, but the OLD bug has gone :) (Closes: #137001)
+  * I would like to state, on record, my undying gratitude towards Steven
+    Holmes, who wrote this version of apt-spy for me as a favour.  After
+    Danny (who wrote v1.x and v2.x) became too busy with life to look after
+    it, it was looking like I was going to have to ask for its removal (for
+    chronic bugginess) since I certainly didn't have the time to do a full
+    rewrite.  Steven stepped in, even though he is a BSD whore these days,
+    and has done an utterly wonderful job of the rewrite. Thanks steg, I owe
+    you a pint (well, two pints since I managed to get the BSD whore dig in :)
+
+ -- Stephen Stafford <bagpuss@debian.org>  Tue, 20 May 2003 20:54:06 +0100
+
+apt-spy (2.3-4) unstable; urgency=low
+
+  * Applied a patch from Jeffrey Connell which guards against MIRRORS_LIST
+    being NULL.  (Closes: #150205)
+
+ -- Stephen Stafford <bagpuss@debian.org>  Mon,  2 Sep 2002 19:48:23 +0100
+
+apt-spy (2.3-3) unstable; urgency=low
+
+  * Comment call in sockets.c to update_status which meant wheel
+    updated every byte.
+    Huge thanks and kudos to Bernhard Link for the pointer.
+    Feels good to close a long standing bug :)
+    (Closes: #113400)
+
+ -- Stephen Stafford <bagpuss@debian.org>  Fri, 17 May 2002 00:31:45 +0100
+
+apt-spy (2.3-2) unstable; urgency=low
+
+  * Forgot to close #117274 which 2.3-1 fixes (Closes: #117274) 
+  * Applied patch to sockets.c provided by Danny Rodriguez (Closes: #119324,
+  #119294)
+
+ -- Stephen Stafford <bagpuss@debian.org>  Sun, 16 Dec 2001 16:09:21 +0000
+
+apt-spy (2.3-1) unstable; urgency=low
+
+  * New upstream release which hopefully fixes some bugs
+  * Acknowledge and integrate NMU of Chris Walters.  (Closes: #120883).
+    Thank you very much Chris.
+  * This release (hopefully) fixes all the ftp proxying problems.
+    (Closes: #102989, #116249, #119293)
+  * Updated manpage to say that if no distribution is specified with
+    -d switch that stable is the default.  (Relates: #119918)
+
+ -- Stephen Stafford <bagpuss@debian.org>  Sun,  9 Dec 2001 12:20:41 +0000
+
+apt-spy (2.2-9) unstable; urgency=high
+
+  * NMU at request of M.
+  * fgetc() returns an int, not a char (Closes: #120883).
+
+ -- Colin Walters <walters@debian.org>  Sat,  8 Dec 2001 05:50:34 -0500
+
+apt-spy (2.2-8) unstable; urgency=low
+
+  * Applied one character patch to sockets.c to fix ftp proxying
+    support.  We need to pass the address, not the value to sscanf, so 
+    s/port/&port/ in line 279.
+
+ -- Stephen Stafford <bagpuss@debian.org>  Wed, 17 Oct 2001 19:55:17 +0100
+
+apt-spy (2.2-7) unstable; urgency=low
+
+  * changed kb for kB to make it clearer that the benchmark is in
+    kiloBYTES rather than kiloBITS.  kB is no more a "correct" abbreviation
+    of "kilobytes" than kb IMO.  But I agree that it might look clearer to
+    some.  I personally have never heard of "kibibytes", and I do not think 
+    that making the units "KiB" would make the meaning clearer to many people.  
+    In fact to the majority of people I believe it would obscure meaning.  
+    So I will not use "KiB" as units.  For the record 1kB for the purposes of 
+    apt-spy is 1024 bytes and not 1000 bytes.  (Closes: #114646)
+
+ -- Stephen Stafford <bagpuss@debian.org>  Sat,  6 Oct 2001 15:48:33 +0100
+
+apt-spy (2.2-6) unstable; urgency=low
+
+  * applied patches to main.c and sockets.c from Danny Rodrigues
+    to fix a divide by zero error on Alpha and an "interrupted
+    system call" problem which affected all arches 
+    (Closes: #114091, #114064)
+  * 2.2-5.test was never realeased/uploaded.  I created it so that the
+    sunmitter of #113400 could test some things to hopefully track down his
+    bug.  It didn't track down the bug, but the changes are a Good Thing(tm)
+    anyway.  So rather than updating every 128bytes while on, the wheel now
+    updates only every 2kbytes (2048)
+
+ -- Stephen Stafford <bagpuss@debian.org>  Tue,  2 Oct 2001 20:31:04 +0100
+
+apt-spy (2.2-5.test) unstable; urgency=low
+
+  * special test version to see if we can track down #113400
+
+ -- Stephen Stafford <bagpuss@debian.org>  Wed, 26 Sep 2001 00:46:51 +0100
+
+apt-spy (2.2-5) unstable; urgency=low
+
+  * Disable wheel by default
+  * update manpage to reflect this, and to provide a 
+    URL for the actual mirror list used.
+
+ -- Stephen Stafford <bagpuss@debian.org>  Tue, 25 Sep 2001 23:14:49 +0100
+
+apt-spy (2.2-4) unstable; urgency=low
+
+  * Applied patches to main.c and main.h to fix the version which
+    --help reports and to fix the way saving output to another file
+    via the -l switch repoted erroneously that it was saving to
+    sources.list (Closes: #113084)
+  * Appears that it saves the file on some occasions even if it barfs
+    with a network error.  Luckily it saves a backup, but it should not
+    save a bad file at all.  Danny Rodriguez supplied a fixed main.c which
+    should no longer do this.
+
+ -- Stephen Stafford <bagpuss@debian.org>  Sun, 23 Sep 2001 17:31:17 +0100
+
+apt-spy (2.2-3) unstable; urgency=low
+
+  * patched to support (limited) ftp proxing using patch from Filipe Maia
+    (Closes: #112447).  If anyone wants to extend this code to make it more
+    generic, patches always appreciated.  Thank you for this Filipe.
+
+ -- Stephen Stafford <bagpuss@debian.org>  Tue, 18 Sep 2001 01:29:38 +0100
+
+apt-spy (2.2-2) unstable; urgency=low
+
+  * updated config.{sub,guess} so package will build on ia64 (Closes: #110496)
+
+ -- Stephen Stafford <bagpuss@debian.org>  Wed, 29 Aug 2001 13:01:15 +0100
+
+apt-spy (2.2-1) unstable; urgency=low
+
+  * New upstream version
+  * Hopefully the hanging problem is sorted out now, but as I
+    have never been able to reliably reproduce it I am not 100%
+    sure of this.  Hence I am leaving the bugs open for mow, but
+    downgrading them to minor (I will close them in a few weeks).
+  * the screen no longer gets cleared (Closes: #104467)
+  * changed usage to refer to apt-spy instead of apt-sources.
+    (Closes: #104470)
+  * added horrible hack to debian/rules as the upstream clean targets
+    do not appear to be doing what they are supposed to.
+  * altered getopt.c so that the last character of a top scorers file
+    should no longer be 0xFF (Closes: #105241)
+
+ -- Stephen Stafford <bagpuss@debian.org>  Sun, 26 Aug 2001 23:22:04 +0100
+
+apt-spy (2.1-2) unstable; urgency=low
+
+  * run libtoolize so it will build on hppa arch (closes: #99367)
+
+ -- Stephen Stafford <bagpuss@debian.org>  Mon, 11 June 2001 21:39:36 +0100
+
+
+apt-spy (2.1-1) unstable; urgency=low
+
+  * New upstream version which fixes some bugs
+  * Adds -w switch to disable spinning status display (Closes: #95913)
+  * Fixes parsing of user supplied server lists so last character of URL no 
+    longer is stripped if not a / (Closes: #96581)
+  * Updated manpage to add -w
+
+ -- Stephen Stafford <bagpuss@debian.org>  Fri, 18 May 2001 21:39:36 +0100
+
+apt-spy (2.0-1) unstable; urgency=low
+
+  * Uploading (closes: #95011)
+  * Namechange, manpage fixed
+  * used --transform-program-name instead of adjusting configure
+
+ -- Stephen Stafford <bagpuss@debian.org>  Wed, 11 Apr 2001 19:30:37 +0000
+
+apt-sources (2.0-1) unstable; urgency=low
+
+  * Initial Release.
+  * This is my first Debian package.
+  * Adjusted the configure to force installation to /usr/sbin
+     rather than /usr/local/sbin
+
+ -- Stephen Stafford <stephen@clothcat.demon.co.uk>  Sat, 10 Mar 2001 15:21:09 +0000
+
+Local variables:
+mode: debian-changelog
+End:
